@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Installation Checklist</title>
+</head>
+<body>
+    <h1>Gas Installation Checklist</h1>
+
+    <!-- Form to enter responder details -->
+    <form action="#" method="POST">
+        <div>
+            <label for="responderName">Responder Name:</label>
+            <input type="text" id="responderName" name="responderName" value="${responder.responderName}" required />
+        </div>
+        <div>
+            <label for="responderAge">Responder Age:</label>
+            <input type="number" id="responderAge" name="responderAge" value="${responder.responderAge}" required />
+        </div>
+        
+        <hr>
+
+        <!-- Checklist questions -->
+        <div th:each="question : ${questions}">
+            <p th:text="${question.question}"></p>
+
+            <label>
+                <input type="radio" th:name="'response_' + ${question.question}" value="yes"> Yes
+            </label>
+            <label>
+                <input type="radio" th:name="'response_' + ${question.question}" value="no"> No
+            </label>
+            <label>
+                <input type="radio" th:name="'response_' + ${question.question}" value="na"> N/A
+            </label>
+            
+            <br>
+            
+            <textarea th:name="'comment_' + ${question.question}" placeholder="Add comment (optional)"></textarea>
+            <br>
+            <input type="file" th:name="'attachment_' + ${question.question}" />
+            <hr>
+        </div>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
